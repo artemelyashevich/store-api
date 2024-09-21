@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderLineMapper orderLineMapper;
 
-    private final WebClient webClient;
+    private final WebClient.Builder  webClientBuilder;
 
     @Transactional
     @Override
@@ -37,8 +37,8 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderLineItems::getSkuCode)
                 .toList();
 
-        var result = this.webClient.get()
-                .uri("http://localhost:8083/api/v1/inventories",
+        var result = this.webClientBuilder.build().get()
+                .uri("http://inventory-service/api/v1/inventories",
                         uriBuilder -> uriBuilder.queryParam("skuCode", codes).build()
                 )
                 .retrieve()

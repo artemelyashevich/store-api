@@ -1,7 +1,6 @@
 package com.elyashevich.order_service.mapper.impl;
 
 import com.elyashevich.order_service.dto.OrderResponse;
-import com.elyashevich.order_service.mapper.OrderLineMapper;
 import com.elyashevich.order_service.mapper.OrderMapper;
 import com.elyashevich.order_service.model.Order;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderMapperImpl implements OrderMapper {
 
-    private final OrderLineMapper orderLineMapper;
-
     @Override
     public OrderResponse toDto(Order entity) {
         return OrderResponse.builder()
                 .id(entity.getId())
                 .orderNumber(entity.getOrderNumber())
-                .orderLineItems(this.orderLineMapper.toDto(entity.getOrderLineItems()))
                 .build();
     }
 

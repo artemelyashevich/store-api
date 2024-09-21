@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "orders")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -7,6 +7,7 @@ import com.elyashevich.order_service.repository.OrderRepository;
 import com.elyashevich.order_service.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderLineMapper orderLineMapper;
 
+    @Transactional
     @Override
     public Order create(OrderRequest orderRequest) {
         var order = new Order();
